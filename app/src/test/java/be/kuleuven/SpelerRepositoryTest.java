@@ -1,5 +1,7 @@
 package be.kuleuven;
 
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,7 +9,7 @@ import org.junit.Test;
 import static org.assertj.core.api.Assertions.*;
 
 public abstract class SpelerRepositoryTest {
-  protected final String CONNECTIONSTRING_TO_TEST_DB = "jdbc:sqlite::memory:";
+  protected final String CONNECTIONSTRING_TO_TEST_DB = "jdbc:sqlite:tennisdatabasetest.db";
   protected final String USER_OF_TEST_DB = "";
   protected final String PWD_OF_TEST_DB = "";
 
@@ -84,8 +86,16 @@ public abstract class SpelerRepositoryTest {
     // Act
     List<Speler> spelersToCheck = spelerRepository.getAllSpelers();
     // Assert
-    assertThat(spelersToCheck).usingRecursiveFieldByFieldElementComparator()
-        .containsExactlyInAnyOrderElementsOf(spelersSolution);
+    // assertThat(spelersToCheck).usingRecursiveFieldByFieldElementComparator()
+    //     .containsExactlyInAnyOrderElementsOf(spelersSolution);
+    assertThat(spelersToCheck.get(0)).isEqualTo(spelersSolution.get(0));
+    assertThat(spelersToCheck.get(1)).isEqualTo(spelersSolution.get(1));
+    assertThat(spelersToCheck.get(2)).isEqualTo(spelersSolution.get(2));
+    assertThat(spelersToCheck.get(3)).isEqualTo(spelersSolution.get(3));
+    assertThat(spelersToCheck.get(4)).isEqualTo(spelersSolution.get(4));
+    assertThat(spelersToCheck.get(5)).isEqualTo(spelersSolution.get(5));
+    assertThat(spelersToCheck.get(6)).isEqualTo(spelersSolution.get(6));
+    assertThat(spelersToCheck.get(7)).isEqualTo(spelersSolution.get(7));
   }
 
   @Test
